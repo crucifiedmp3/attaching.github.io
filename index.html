@@ -89,10 +89,8 @@
   </style>
 </head>
 <body>
-  <!-- Discord banner -->
   <div class="banner">discord.gg/mp3</div>
 
-  <!-- Profile image -->
   <img class="profile-pic" src="https://i.pinimg.com/736x/b5/58/0e/b5580e3629e44c818f082dd54890ab60.jpg" alt="Profile Picture">
 
   <h1>Crucified Private</h1>
@@ -102,9 +100,15 @@
   <a class="link" href="https://instagram.com/spilt.pills" target="_blank">Instagram</a>
   <a class="link" href="https://vrchat.com/home/group/grp_39a705b1-8e48-4035-8416-47b87ad2ac81" target="_blank">VRC Group</a>
 
+  <audio id="bgMusic" autoplay loop>
+    <source src="Skeletrix Island.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="glitter" id="glitter"></div>
 
   <script>
+    // Glitter effect
     const glitterContainer = document.getElementById('glitter');
     for (let i = 0; i < 200; i++) {
       const dot = document.createElement('span');
@@ -113,6 +117,17 @@
       dot.style.animationDuration = `${1 + Math.random() * 2}s`;
       glitterContainer.appendChild(dot);
     }
+
+    // Fade in music volume
+    const audio = document.getElementById('bgMusic');
+    audio.volume = 0;
+    const fadeIn = setInterval(() => {
+      if (audio.volume < 1) {
+        audio.volume = Math.min(audio.volume + 0.02, 1);
+      } else {
+        clearInterval(fadeIn);
+      }
+    }, 80); // 80ms * 50 = ~4 seconds
   </script>
 </body>
 </html>
